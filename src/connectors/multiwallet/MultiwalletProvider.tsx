@@ -75,7 +75,7 @@ export const ConnectorWatcher = <P, A>({
         status: "connected", //renNetwork !== targetNetwork ? "wrong_network" : "connected",
       });
     },
-    [update, chain, connector, targetNetwork]
+    [update, chain, connector, name]
   );
 
   const handleError = useCallback(
@@ -92,7 +92,7 @@ export const ConnectorWatcher = <P, A>({
       });
       // connector.emitter.removeAllListeners();
     },
-    [update, chain, connector]
+    [update, chain, connector, name]
   );
 
   const handleDeactivate = useCallback(
@@ -111,7 +111,7 @@ export const ConnectorWatcher = <P, A>({
       // The conneector should clean up after itself internally
       // connector.emitter.removeAllListeners();
     },
-    [update, chain, connector]
+    [update, chain, connector, name]
   );
 
   const activate = useCallback(() => {
@@ -154,7 +154,7 @@ export const ConnectorWatcher = <P, A>({
       });
       Toast.error(`Connection failed`, `${error}`);
     });
-  }, [connector, update, chain, targetNetwork]);
+  }, [connector, update, chain, name, targetNetwork]);
 
   // Register listeners
   useEffect(() => {
@@ -195,7 +195,7 @@ export const ConnectorWatcher = <P, A>({
       });
       activate();
     }
-  }, [status]);
+  }, [status, activate, name, chain, connector, update]);
 
   return null;
 };
@@ -247,7 +247,7 @@ export const MultiwalletProvider = <P, A>({
         updateConnector({ connector, chain, name, status: "connecting" });
       }
     },
-    [enabledChains, setEnabledChains, updateConnector]
+    [enabledChains, updateConnector]
   );
 
   return (

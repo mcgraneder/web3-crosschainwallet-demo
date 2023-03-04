@@ -27,7 +27,7 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
   const { width } = useViewport();
   const { provider } = useWallet(chain as Chain);
   const { activateConnector } = useMultiwallet();
-  console.log(provider, chain, targetNetwork);
+
 
   const [error, setError] = useState<any>(false);
 
@@ -44,7 +44,7 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
       ? localStorage.setItem("providerEthereum", "Metamask")
       : localStorage.setItem("providerSolana", "Phantom");
   };
-  console.log(chain, targetNetwork);
+ 
   // const [success, setSuccess] = useState(false);
 
   // const handleSwitch = useCallback(() => {

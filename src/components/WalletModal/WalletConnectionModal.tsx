@@ -90,18 +90,20 @@ const WalletEntry = <P, A>({
   const providerEthereum = localStorage.getItem("providerEthereum");
   const providerSolana = localStorage.getItem("providerSolana");
 
-  const { activateConnector, enabledChains } = useMultiwallet<P, A>();
+  const { activateConnector, enabledChains, } = useMultiwallet<P, A>();
 
   const onClick = useCallback(() => {
-    if (chain === Chain.Solana && enabledChains[Chain.Ethereum]?.status !== "connected") {
+
+    if (chain !== Chain.Ethereum && enabledChains[Chain.Ethereum]?.status !== "connected") {
       Toast.error("Must connect to Ethereum first");
       return;
     }
+   
     activateConnector(chain, connector, name);
     chain === Chain.Ethereum
       ? localStorage.setItem("providerEthereum", name)
       : localStorage.setItem("providerSolana", name);
-  }, [activateConnector, Info, chain, connector]);
+  }, [activateConnector, chain, connector, enabledChains, name]);
 
   const walletConfig = getWalletConfig(name as Wallet);
   const { Icon } = walletConfig;
@@ -138,7 +140,7 @@ const StyledTab = ({ title }: { title: React.ReactNode }) => {
   return (
     <Tab
       className={({ selected }: { selected: boolean }) =>
-        `  rounded-[14px] py-3 px-20 flex justify-center sm:px-20 md:px-20 lg:px-20  font-semibold ${
+        `  rounded-[14px] py-3 px-10 flex justify-center sm:px-20 md:px-10 lg:px-10  font-semibold ${
           selected && "bg-black-800"
         }`
       }>
@@ -193,7 +195,7 @@ export const WalletConnectModal = <P, A>({
 
   useEffect(() => {
     if (options.targetNetwork !== targetNetwork) {
-      console.log(options.targetNetwork, targetNetwork);
+ 
       switch (options.targetNetwork) {
         case "testnet":
           setTargetNetwork(RenNetwork.Testnet);
@@ -236,6 +238,15 @@ export const WalletConnectModal = <P, A>({
   const rightLabelDisplay = connected ? `connected` : "";
 
   const connectors = options.config.chains[options.chain];
+
+    const deactivate = async (chain: string) => {
+      if (chain !== Chain.Ethereum) enabledChains[chain]?.connector.deactivate();
+      else {
+        for (const chain of Object.keys(enabledChains)) {
+          enabledChains[chain]?.connector.deactivate();
+        }
+      }
+    };
 
   return (
     <>
@@ -324,7 +335,7 @@ export const WalletConnectModal = <P, A>({
                 </ContentWrapper>
                 <div className='flex items-center justify-center mt-6'>
                   {connected && (
-                    <PrimaryButton onClick={deactivateConnector} className='bg-[#1F3F38] px-12'>
+                    <PrimaryButton onClick={() => deactivate(options.chain)} className='bg-[#1F3F38] px-12'>
                       {"disconnect"}
                     </PrimaryButton>
                   )}

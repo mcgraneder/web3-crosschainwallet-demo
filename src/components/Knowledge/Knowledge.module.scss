@@ -1,0 +1,45 @@
+.app__profiles {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.app__profile-item {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1.25rem;
+  background-color: #25272C;
+  border-radius: 0.5rem;
+
+  img {
+    border-radius: 0.5rem;
+  }
+
+  h2 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+  @media screen and (min-width: 2000px) {
+    width: 450px;
+    margin: 2rem 4rem;
+
+    img {
+      height: 320px;
+    }
+  }
+  @media screen and (min-width: 800px) {
+    width: 450px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 380px;
+  }
+}

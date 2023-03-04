@@ -22,7 +22,7 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   webpack(config, { buildId }) {
     config.module.rules.push({ test: /\.svg$/, use: ["@svgr/webpack"] });
     config.plugins.push(

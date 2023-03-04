@@ -34,7 +34,7 @@ function AccountMenu({
       {connected ? (
         <Menu as='div' className='relative inline-block text-left '>
           <Menu.Button className={`${btnStyle} min-w-[190px] justify-center relative`}>
-            <span>{"hello"}</span>
+            <span>{"View Accounts"}</span>
             <span className='relative'>
               <UilUserCircle />
              

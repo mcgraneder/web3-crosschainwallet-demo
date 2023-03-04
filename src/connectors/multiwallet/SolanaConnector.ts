@@ -198,7 +198,7 @@ export class SolanaConnector implements ConnectorInterface<SolanaProvider, strin
   }
 
   private _accountChanged = (newPublicKey: PublicKey) => {
-    console.log("heyyyyyyajdd");
+
     const publicKey = this.publicKey;
     if (!publicKey) return;
 

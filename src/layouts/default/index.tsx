@@ -35,10 +35,7 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
     error,
   } = multiwallet;
 
-  useEffect(() => {
-    console.log(error);
-    console.log(chain);
-  }, [error, chain]);
+
 
   const showConnectModal = connected 
 
@@ -110,9 +107,6 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
     return options;
   }, [handleWalletPickerClose, network, chain]);
 
-  useEffect(() => {
-    console.log(openWalletModal);
-  }, [openWalletModal]);
 
   return (
     <>

@@ -22,9 +22,9 @@ const Sidebar = () => {
   const { enabledChains } = useMultiwallet();
 
   const wallets = Object.values(enabledChains);
-  console.log(enabledChains);
 
-  console.log(enabledChains);
+
+
   const mutatedArray = Array(enabledChains);
 
   return (
@@ -58,7 +58,7 @@ const Sidebar = () => {
             Connected Wallets
           </h3>
           {wallets.map((wallet: any) => {
-            console.log(wallet);
+      
             const walletConfig = getWalletConfig(wallet.name as Wallet);
             const { Icon } = walletConfig;
             return (

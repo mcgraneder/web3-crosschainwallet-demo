@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+import { Web3Provider } from '@ethersproject/providers';
 
 export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -97,4 +99,15 @@ export function formatHighValues(n: number) {
   } else {
     return toFixed(n / billion, 2) + "b";
   }
+}
+
+export const getJsonRPCProvider = (): ethers.providers.JsonRpcProvider => {
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://goerli.infura.io/v3/ac9d2c8a561a47739b23c52e6e7ec93f"
+  );
+  return provider;
+};
+
+export function getLibrary(provider: any): Web3Provider {
+  return new Web3Provider(provider);
 }

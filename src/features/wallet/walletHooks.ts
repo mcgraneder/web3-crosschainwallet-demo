@@ -25,6 +25,7 @@ export type WalletData = ReturnType<typeof useMultiwallet> & {
   refreshConnector: () => void;
   chainId: string;
   error: Error;
+  activateConnector: () => void
 };
 
 export const useSyncWalletNetwork = () => {
@@ -47,7 +48,7 @@ export const useSyncWalletNetwork = () => {
 type UseWallet = (chain: Chain) => WalletData;
 
 export const useWallet: UseWallet = (chain) => {
-  const { enabledChains, targetNetwork, activateConnector, setTargetNetwork } = useMultiwallet();
+  const { enabledChains, targetNetwork, activateConnector: ac, setTargetNetwork } = useMultiwallet();
   const { account = "", status = WalletStatus.Disconnected } = enabledChains?.[chain] || {};
   const provider = enabledChains?.[chain]?.provider;
   const chainId = enabledChains?.[chain]?.chain;
@@ -59,6 +60,11 @@ export const useWallet: UseWallet = (chain) => {
   const deactivateConnector = useCallback(() => {
     enabledChains[chain]?.connector.deactivate();
   }, [enabledChains, chain]);
+
+   const activateConnector = useCallback(() => {
+     enabledChains[chain]?.connector.activate();
+   }, [enabledChains, chain]);
+
 
   const refreshConnector = useCallback(() => {
     // deactivateConnector();

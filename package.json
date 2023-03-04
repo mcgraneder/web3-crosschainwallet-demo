@@ -9,6 +9,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@iconscout/react-unicons": "^2.0.0",
+    "@myetherwallet/mewconnect-web-client": "^2.2.0-beta.18",
+    "@renproject/chains": "^3.5.2",
+    "@renproject/interfaces": "^2.6.0",
+    "@renproject/multiwallet-binancesmartchain-injected-connector": "^2.6.0",
+    "@renproject/ren": "^3.5.2",
+    "@renproject/utils": "^3.5.2",
+    "@solana/spl-token": "^0.3.7",
+    "@svgr/webpack": "^6.5.1",
     "next": "^13.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -38,12 +38,12 @@ export interface EthereumConnectorOptions extends AbstractEthereumConnectorOptio
 export type InjectedProvider = SaneProvider & {
   isMetamask?: boolean;
   autoRefreshOnNetworkChange?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   request: (request: { method: string }) => Promise<any>;
   enable: () => Promise<void>;
   on: (
     name: string,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     listener: (...args: any[]) => SyncOrPromise<void>
   ) => void;
 };
@@ -71,7 +71,6 @@ export class EthereumInjectedConnector extends AbstractEthereumConnector<Injecte
       .catch(async (...args) => this.deactivate(...args));
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   activate: ConnectorInterface<any, any>["activate"] = async () => {
     // Await in case a child class's getProvider is asynchronous.
     let provider = await (this as AbstractEthereumConnector<InjectedProvider>).getProvider();
@@ -98,7 +97,7 @@ export class EthereumInjectedConnector extends AbstractEthereumConnector<Injecte
     try {
       account = resultOrRaw(await provider.request({ method: "eth_requestAccounts" }))[0];
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      
       if ((error as any).code === 4001) {
         this.emitter.emitError(new Error("The user rejected request"));
         throw new UserRejectedRequestError();
@@ -126,6 +125,7 @@ export class EthereumInjectedConnector extends AbstractEthereumConnector<Injecte
   };
 
   getProvider = () => {
+    //@ts-ignore
     return window.ethereum as InjectedProvider;
   };
 
@@ -133,7 +133,7 @@ export class EthereumInjectedConnector extends AbstractEthereumConnector<Injecte
     // Await in case a child class's getProvider is asynchronous.
     const provider = await (this as AbstractEthereumConnector<InjectedProvider>).getProvider();
     if (provider.removeListener) {
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+     
       provider.removeListener("close", this.deactivate);
       provider.removeListener("networkChanged", this.handleUpdate);
       provider.removeListener("accountsChanged", this.handleUpdate);

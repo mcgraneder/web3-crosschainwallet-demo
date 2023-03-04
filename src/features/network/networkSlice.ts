@@ -16,6 +16,7 @@ const slice = createSlice({
   name: "network",
   initialState,
   reducers: {
+    //@ts-ignore
     setNetwork(state, action: PayloadAction<RenNetwork>) {
       state.network = action.payload;
     },

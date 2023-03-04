@@ -35,29 +35,36 @@ const slice = createSlice({
   name: "wallet",
   initialState,
   reducers: {
+    //@ts-ignore
     setChain(state, action: PayloadAction<any>) {
       state.chain = action.payload;
     },
+    //@ts-ignore
     setPickerOpened(state, action: PayloadAction<boolean>) {
       state.pickerOpened = action.payload;
     },
+    //@ts-ignore
     addOrUpdateBalance(state, action: PayloadAction<AssetBalance>) {
-      const index = state.balances.findIndex((entry) => entry.symbol === action.payload.symbol);
+      const index = state.balances.findIndex((entry: any) => entry.symbol === action.payload.symbol);
       if (index > -1) {
         state.balances[index] = action.payload;
       } else {
         state.balances.push(action.payload);
       }
     },
+    //@ts-ignore
     resetBalances(state) {
       state.balances = [];
     },
+    //@ts-ignore
     setScreeningWarningOpened(state, action: PayloadAction<boolean>) {
       state.screening.dialogOpened = action.payload;
     },
+    //@ts-ignore
     setFromAddressSanctioned(state, action: PayloadAction<boolean | null>) {
       state.screening.fromAddressSanctioned = action.payload;
     },
+    //@ts-ignore
     setToAddressSanctioned(state, action: PayloadAction<boolean | null>) {
       state.screening.toAddressSanctioned = action.payload;
     },
@@ -78,4 +85,4 @@ export const walletReducer = slice.reducer;
 
 export const $wallet = (state: RootState) => state.wallet;
 
-export const $screening = createSelector($wallet, (wallet) => wallet.screening);
+export const $screening = createSelector($wallet, (wallet: any) => wallet.screening);

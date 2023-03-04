@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
 import NavigationBar from "./NavigationBar";
-import { useMetaversalAccount } from "src/contexts/useMetaversalAccount";
-import BottomNavigationBar from "./BottomNavigationBar";
-import PendingTxs from "src/components/transactions/PendingTxs/PendingTxs";
-import { useShowDeploymentMessage } from "src/hooks/useShowDeploymentMessage";
 import WalletConnectionModal from "src/components/WalletModal/WalletConnectionModal";
 import ConnectAgainModal from "src/components/modals/ConnectAgainModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,18 +19,6 @@ interface DefaultLayoutProps {
 }
 
 function DefaultLayout({ children }: DefaultLayoutProps) {
-  const router = useRouter();
-  const { t } = useTranslation();
-  const {
-    errors,
-    pendingTxs,
-    isAppAccessBlocked,
-    setIsAppAccessBlocked,
-    updateError,
-    initialized,
-    exists,
-  } = useMetaversalAccount();
-
   const dispatch = useDispatch();
   useSyncWalletNetwork();
   const { activateConnector } = useMultiwallet();
@@ -60,7 +43,7 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
     console.log(chain);
   }, [error, chain]);
 
-  const showConnectModal = connected && initialized && !exists;
+  const showConnectModal = connected 
 
   const [walletMenuAnchor, setWalletMenuAnchor] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState<boolean>(false);

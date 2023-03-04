@@ -27,23 +27,23 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
   const { width } = useViewport();
   const { provider } = useWallet(chain as Chain);
   const { activateConnector } = useMultiwallet();
-
+  console.log(provider, chain, targetNetwork);
 
   const [error, setError] = useState<any>(false);
 
-  const onClick = async () => {
-    const addOrSwitchChain = await SwitchNetwork(chain as Chain, targetNetwork as any);
-    if (addOrSwitchChain?.switched) {
-      activateConnector(
-        chain,
-        getMultiwalletConfig(targetNetwork)?.chains[chain][0].connector,
-        "Metamask"
-      );
-    }
-    chain === Chain.Ethereum
-      ? localStorage.setItem("providerEthereum", "Metamask")
-      : localStorage.setItem("providerSolana", "Phantom");
-  };
+  // const onClick = async () => {
+  //   const addOrSwitchChain = await SwitchNetwork(chain as Chain, targetNetwork as any);
+  //   if (addOrSwitchChain?.switched) {
+  //     activateConnector(
+  //       chain,
+  //       getMultiwalletConfig(targetNetwork)?.chains[chain][0].connector,
+  //       "Metamask"
+  //     );
+  //   }
+  //   chain === Chain.Ethereum
+  //     ? localStorage.setItem("providerEthereum", "Metamask")
+  //     : localStorage.setItem("providerSolana", "Phantom");
+  // };
  
   // const [success, setSuccess] = useState(false);
 
@@ -84,7 +84,7 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
               </div>
             </div>
             <div className='px-20 py-6'>
-              <PrimaryButton className='justify-center w-full text-lg bg-primary' onClick={onClick}>
+              <PrimaryButton className='justify-center w-full text-lg bg-primary' onClick={() => {}}>
                 {"Switch Network"}
               </PrimaryButton>
             </div>
@@ -107,7 +107,7 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
                 </div>
               </div>
               <div className='py-6 '>
-                <PrimaryButton className='justify-center w-full text-lg' onClick={onClick}>
+                <PrimaryButton className='justify-center w-full text-lg' onClick={() => {}}>
                   {"Try Again"}
                 </PrimaryButton>
               </div>

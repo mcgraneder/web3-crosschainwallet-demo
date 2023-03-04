@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useMultiwallet } from "src/connectors/multiwallet";
 import PrimaryButton from "../catalog/PrimaryButton";
 import { trimAddress } from "../../connectors/multiwallet/MultiwalletProvider";
-import { getWalletConfig, walletsConfig } from "../../connectors/multiwallet/walletsConfig";
+import { getWalletConfig, } from "../../connectors/multiwallet/walletsConfig";
 import { Wallet } from "../../connectors/multiwallet/walletsConfig";
-import ConnectedAccountModal from "../walletConnectModal/ConnectedAccountModal";
+
 import { Chain } from "@renproject/utils";
 import { setChain, $wallet } from "src/features/wallet/walletSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,7 +87,7 @@ const Sidebar = () => {
             );
           })}
         </div>
-        {showConnectModal && <ConnectedAccountModal chain={chain} />}
+        {/* {showConnectModal && <ConnectedAccountModal chain={chain} />} */}
       </div>
     </>
   );

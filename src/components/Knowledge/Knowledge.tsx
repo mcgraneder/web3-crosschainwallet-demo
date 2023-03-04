@@ -16,6 +16,8 @@ import { getWalletConfig } from "../../connectors/multiwallet/walletsConfig";
 import Wallet from "../../connectors/multiwallet/Wallet";
 import { getLibrary, getJsonRPCProvider } from "../../utils/misc";
 import { ethers } from "ethers";
+import AppDescription from "../AppDescription/AppDescription";
+import Step2 from "../AppDescription/Step";
 
 const abouts = [
   {
@@ -29,11 +31,12 @@ const abouts = [
   },
 ];
 
+type CommonTypes = "step1" | "step2"
+export type Flow = CommonTypes 
+
 const Knowledge = () => {
-  const { enabledChains, targetNetwork, setTargetNetwork } = useMultiwallet<any, any>();
-  const dispatch = useDispatch();
-  const { activateConnector } = useMultiwallet();
-  const { network } = useSelector($network);
+  const { enabledChains, } = useMultiwallet<any, any>();
+
   const { chain } = useSelector($wallet);
   const multiwallet = useWallet(Chain.Ethereum);
   const [walletBalance, setWalletBalance] = useState<string>("");
@@ -50,21 +53,34 @@ const Knowledge = () => {
   const [provider, setProvider] = useState<any>(null);
   const [binanceProvider, setBinanceProvider] = useState<any>(null);
 
+  const [flow, setFlow] = useState<Array<Flow>>(["step1"]);
+  const [Connected, setConnected] = useState<boolean>(false)
 
-  const [walletMenuAnchor, setWalletMenuAnchor] = useState<null | HTMLElement>(null);
-  const [open, setOpen] = useState<boolean>(false);
-  const [openWalletModal, setOpenWalletModal] = useState<boolean>(false);
+  useEffect(() => {
+    const wallets = Object.values(enabledChains);
+    let isConnected = [];
+    wallets.forEach((wallet) => {
+      if (wallet.status !== "connected") isConnected.push(false)
+    })
+    if (isConnected.length == wallets.length) setConnected(false)
+    else setConnected(true)
+  }, [enabledChains])
+
+    const pushFlow = (nf: Flow) => setFlow((f) => [...f, nf]);
+    const popFlow = () =>
+      setFlow((f) => {
+        const fl = [...f];
+        fl.pop();
+        return fl;
+      });
   // console.log(network, chain)
 
   const {
-    status,
+
     account,
     connected,
-    deactivateConnector,
-    refreshConnector,
-    wallet,
     provider: lib,
-    error,
+
   } = multiwallet;
 
   function signMessageEth() {
@@ -136,18 +152,33 @@ const Knowledge = () => {
 
   const wallets = Object.values(enabledChains);
 
-  return (
+  const activeFlowState = flow[flow.length - 1];
+  
+
+  if (wallets.length == 0 || !Connected) return (
     <>
-      <h2 className='text-4xl font-bold text-primary'>Current Connections</h2>
+      {activeFlowState === "step1" && <AppDescription onBack={pushFlow} />}
+      {activeFlowState === "step2" && <Step2 onBack={popFlow} />}
+    </>
+  );
+  
+  else return (
+    <>
+      { <h2 className='text-4xl font-bold text-primary'>Current Connections</h2>}
 
       <div className={style["app__profiles"]}>
         {wallets?.map((wallet) => {
           const walletConfig = getWalletConfig(wallet.name as any);
           const { Icon } = walletConfig;
 
-          return (
+          if (wallet.status !== "connected") return(
             <>
-              {wallet.status === "connected" && wallet.chain !== "Solana" ? (
+            
+            </>
+          )
+          else return (
+            <>
+              {wallet.chain !== "Solana" ? (
                 <motion.div
                   whileInView={{ opacity: 1 }}
                   whileHover={{ scale: 1.1 }}

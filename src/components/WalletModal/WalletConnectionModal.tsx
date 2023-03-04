@@ -260,13 +260,7 @@ export const WalletConnectModal = <P, A>({
             <ConnectingModal close={cancel} open={!connected} />
           </>
         )) ||
-        (wrongNetwork && (
-          <UnsupportedNetworkModal
-            close={toggleWalletModal}
-            chain={options.chain as Chain}
-            targetNetwork={network as any}
-          />
-        )) || (
+         (
           <Modal open onClose={toggleWalletModal}>
             <div>
               <Card

@@ -10,6 +10,7 @@ type ToastParamProps = {
 
 const success = (title: string, description?: string, config?: ToastContainerProps) => {
   toast.success(
+    //@ts-ignore
     ({ ...props }: ToastParamProps) => (
       <Notification title={title} description={description} {...props} />
     ),
@@ -23,6 +24,7 @@ const success = (title: string, description?: string, config?: ToastContainerPro
 
 const error = (title: string, description?: string, config?: ToastContainerProps) => {
   toast.error(
+    //@ts-ignore
     ({ ...props }: ToastParamProps) => (
       <Notification title={title} description={description} {...props} />
     ),

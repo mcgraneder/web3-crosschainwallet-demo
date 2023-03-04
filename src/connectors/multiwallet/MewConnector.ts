@@ -109,7 +109,7 @@ export class EthereumMEWConnectConnector extends AbstractEthereumConnector<MewPr
       params: [],
     };
     return new Promise((resolve, reject) =>
-      send(params, (err, res) =>
+      send(params, (err: any, res: any) =>
         err || !res || res.error
           ? reject(err || res?.error || "no response")
           : resolve(res.result[0])
@@ -129,7 +129,7 @@ export class EthereumMEWConnectConnector extends AbstractEthereumConnector<MewPr
     };
     return this.networkIdMapper(
       await new Promise((resolve, reject) =>
-        send(params, (err, res) =>
+        send(params, (err: any, res: any) =>
           err || !res || res.error
             ? reject(err || res?.error || "no response")
             : resolve(res.result)

@@ -9,7 +9,7 @@ import AlertTriangle from "../../../public/svgs/alertTriangle.svg";
 import { useViewport } from "../../hooks/useViewport";
 import { Breakpoints } from "../../constants/Breakpoints";
 import BottomSheetOptions from "../fund/BottomSheetOptions";
-import { Toast } from "src/utils/toast";
+import { Toast } from "@/utils/toast";
 import UnsupportedNetworkModal from "./UnsupportedNetworkModal";
 
 interface ConnectionErrorModalProps {

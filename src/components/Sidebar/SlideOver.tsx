@@ -17,7 +17,6 @@ import { Wallet } from "../../connectors/multiwallet/walletsConfig";
 import EthereumLog from "../../../public/svgs/Eth.svg";
 import SolanaLogo from "../../../public/svgs/Solana.svg";
 import { Chain } from "@renproject/chains";
-import { useTranslation } from "react-i18next";
 import useCopy from "../../hooks/useCopy";
 
 export type Slideover = {
@@ -29,7 +28,6 @@ export type Slideover = {
 
 export function CopyHelper(props: { toCopy: string; children?: React.ReactNode }) {
   const [isCopied, setCopied] = useCopy();
-  const { t } = useTranslation();
 
   return (
     <div
@@ -39,7 +37,7 @@ export function CopyHelper(props: { toCopy: string; children?: React.ReactNode }
         <div className='flex gap-1'>
           <UilCheckCircle color={"#a3a3a3"} size={"20"} />
           <div>
-            <div className='text-grey-400'>{t("copied")}</div>
+            <div className='text-grey-400'>{"copied"}</div>
           </div>
         </div>
       ) : (
@@ -55,7 +53,6 @@ export function CopyHelper(props: { toCopy: string; children?: React.ReactNode }
 export default function SlideOver({ open, setOpen, toggleWalletModal }: Slideover) {
   const { enabledChains } = useMultiwallet();
   const { chain } = useSelector($wallet);
-  const { t } = useTranslation();
   //make map only use enabled chains with connected status
   const wallets = Object.values(enabledChains);
   const address = enabledChains[chain]?.account;
@@ -118,18 +115,18 @@ export default function SlideOver({ open, setOpen, toggleWalletModal }: Slideove
                   <div className='flex h-full flex-col bg-black-800 py-6 px-6 shadow-xl'>
                     <div className='px-3 sm:px-6 gap-10 flex items-center justify-between'>
                       <Dialog.Title className='text-2xl font-semibold text-white'>
-                        {t("walletSlideOver.activeWallets")}
+                        {"Active Wallets"}
                       </Dialog.Title>
                       <PrimaryButton
                         className={"flex h-[40px] bg-grey-600 gap-2"}
                         onClick={walletAction}>
-                        <span>{t("walletSlideOver.addWallets")}</span>
+                        <span>{"Add Wallets"}</span>
                         <UilPlus className='w-5 h-5' />
                       </PrimaryButton>
                     </div>
                     <div className='px-3 my-6 sm:px-6 gap-10 flex items-center justify-between'>
                       <Dialog.Description className='text-grey-400 '>
-                        {t("walletSlideOver.walletDescription")}
+                        {"Wallet Description"}
                       </Dialog.Description>
                     </div>
                     {wallets.map((wallet: any) => {

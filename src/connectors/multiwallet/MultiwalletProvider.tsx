@@ -65,7 +65,7 @@ export const ConnectorWatcher = <P, A>({
   targetNetwork: RenNetwork;
 }): null => {
   const handleUpdate = useCallback(
-    ({ provider, account, renNetwork }) => {
+    ({ provider, account, renNetwork }: any) => {
       update({
         name,
         connector,
@@ -79,7 +79,7 @@ export const ConnectorWatcher = <P, A>({
   );
 
   const handleError = useCallback(
-    (error) => {
+    (error: any) => {
       console.warn(error);
       update({
         name,
@@ -221,10 +221,10 @@ export const MultiwalletProvider = <P, A>({
   );
 
   const activateConnector = useCallback(
-    async (chain: string, connector, name: string) => {
+    async (chain: string, connector: any, name: string) => {
       // catch insecure connector modification
       if (enabledChains.hasOwnProperty(chain)) {
-        const oldConnector = enabledChains[chain];
+        const oldConnector = enabledChains[chain]!;
         // Don't re-connect if the same connector is already connecting or connected
         if (
           oldConnector.name === name &&

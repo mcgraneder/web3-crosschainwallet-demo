@@ -9,7 +9,6 @@ import { UilCheckCircle } from "@iconscout/react-unicons";
 import BottomSheetOptions from "../fund/BottomSheetOptions";
 import { useViewport } from "../../hooks/useViewport";
 import { Breakpoints } from "../../constants/Breakpoints";
-import { useTranslation } from "react-i18next";
 
 interface ConnectingModalProps {
   close: () => void;
@@ -70,7 +69,7 @@ function ConnectingModal({ close, open }: ConnectingModalProps) {
                 <div className='text-2xl font-semibold '>{connectedText}</div>
               </div>
               <div className='w-full border-2 border-grey-600 rounded-2xl px-6 py-4'>
-                <div className='text-sm text-grey-400'>{t("protocolDisclaimer")}</div>
+                <div className='text-sm text-grey-400'>{"protocolDisclaimer"}</div>
               </div>
             </div>
           </BottomSheetOptions>

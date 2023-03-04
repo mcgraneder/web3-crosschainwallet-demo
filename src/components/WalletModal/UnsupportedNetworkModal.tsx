@@ -9,7 +9,6 @@ import { getMultiwalletConfig } from "src/connectors/multiwallet/multiwalletConf
 import { useMultiwallet } from "src/connectors/multiwallet";
 import BottomSheetOptions from "../fund/BottomSheetOptions";
 import { Breakpoints } from "src/constants/Breakpoints";
-import { useTranslation } from "next-i18next";
 import { useViewport } from "../../hooks/useViewport";
 
 export declare enum RenNetwork {
@@ -25,7 +24,6 @@ interface UnsupportedNetworkModalProps {
   targetNetwork: RenNetwork;
 }
 function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNetworkModalProps) {
-  const { t } = useTranslation();
   const { width } = useViewport();
   const { provider } = useWallet(chain as Chain);
   const { activateConnector } = useMultiwallet();
@@ -34,7 +32,7 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
   const [error, setError] = useState<any>(false);
 
   const onClick = async () => {
-    const addOrSwitchChain = await SwitchNetwork(chain as Chain, targetNetwork as RenNetwork);
+    const addOrSwitchChain = await SwitchNetwork(chain as Chain, targetNetwork);
     if (addOrSwitchChain?.switched) {
       activateConnector(
         chain,
@@ -102,21 +100,21 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
           <BottomSheetOptions title='Error' open={error} setOpen={close}>
             <div className='pt-5 pb-8 pl-6 pr-6  rounded-2xl bg-black-800'>
               <div className='flex flex-col items-center justify-center w-full gap-6'>
-                <div className='text-xl font-semibold '>{t("errorConnecting")}</div>
+                <div className='text-xl font-semibold '>{"Error Connecting"}</div>
                 <AlertTriangle />
                 <div className='px-6 text-sm text-center text-grey-400'>
-                  {t("notifications.unsupportedChainMsg")}
+                  {"Unsupported Chain"}
                 </div>
               </div>
               <div className='py-6 '>
                 <PrimaryButton className='justify-center w-full text-lg' onClick={onClick}>
-                  {t("buttons.tryAgain")}
+                  {"Try Again"}
                 </PrimaryButton>
               </div>
               <div
                 onClick={close}
                 className='flex items-center text-[15px] justify-center text-grey-400 hover:text-white hover: cursor-pointer'>
-                {t("backToWallets")}
+                {"Back To Wallets"}
               </div>
             </div>
           </BottomSheetOptions>

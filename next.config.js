@@ -1,4 +1,3 @@
-const { i18n } = require("./next-i18next.config");
 const webpack = require("webpack");
 
 const securityHeaders = [
@@ -42,28 +41,9 @@ const nextConfig = {
     ];
   },
 
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/",
-        permanent: false,
-      },
-      process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true"
-        ? {
-            source: "/((?!maintenance)(?!_next)(?!static).*)",
-            destination: "/maintenance",
-            permanent: false,
-          }
-        : {
-            source: "/maintenance",
-            destination: "/",
-            permanent: false,
-          },
-    ];
-  },
+ 
   staticPageGenerationTimeout: 240000,
-  i18n,
+
 };
 
 module.exports = nextConfig;

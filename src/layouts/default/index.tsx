@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useRouter } from "next/router";
 import NavigationBar from "./NavigationBar";
 import WalletConnectionModal from "src/components/WalletModal/WalletConnectionModal";
-import ConnectAgainModal from "src/components/modals/ConnectAgainModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useMultiwallet } from "src/connectors/multiwallet";
 import { $network } from "src/features/network/networkSlice";
@@ -12,7 +10,6 @@ import { getMultiwalletConfig } from "../../connectors/multiwallet/multiwalletCo
 import { Chain } from "@renproject/chains";
 import { WalletPickerProps } from "src/components/WalletModal/WalletConnectionModal";
 import SlideOver from "../../components/Sidebar/SlideOver";
-import ConnectModal from "../../components/modals/Connect";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
@@ -137,9 +134,7 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
           toggleWalletModal={toggleWalletModal}
         />
       )}
-      {showConnectModal && (
-        <ConnectModal goBack={toggleWalletModal} isWalletModalOpen={openWalletModal} />
-      )}
+      
       {/* {error && (
         <ConnectionErrorModal
           pendingWallet={pendingWallet}

@@ -17,7 +17,6 @@ function BottomSheetOptions({
   title,
   hideCloseIcon = false,
 }: BottomSheetOptionsProp) {
-  const { t } = useTranslation();
   const isTitleConnect = title === "Connect";
   const _handleOnClose = () => setOpen(false);
 
@@ -54,7 +53,7 @@ function BottomSheetOptions({
                   className={`mb-3 font-extrabold text-2xl leading-6 ${
                     isTitleConnect ? "" : "text-gray-500 text-[14px] font-semibold"
                   } capitalize`}>
-                  {t(title)}
+                  {title}
                 </Dialog.Title>
               )}
               {!hideCloseIcon && (

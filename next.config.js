@@ -30,20 +30,29 @@ const nextConfig = {
     );
     return config;
   },
-  
-  async headers() {
+
+  async redirects() {
     return [
       {
-        // Apply these headers to all routes in your application.
-        source: "/:path*",
-        headers: securityHeaders,
+        source: "/",
+        destination: "/fund",
+        permanent: false,
       },
+      process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true"
+        ? {
+            source: "/((?!maintenance)(?!_next)(?!static).*)",
+            destination: "/maintenance",
+            permanent: false,
+          }
+        : {
+            source: "/maintenance",
+            destination: "/",
+            permanent: false,
+          },
     ];
   },
 
- 
   staticPageGenerationTimeout: 240000,
-
 };
 
 module.exports = nextConfig;

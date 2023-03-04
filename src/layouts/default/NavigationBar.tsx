@@ -52,7 +52,6 @@ function NavigationBar({
   multiwallet,
   inMaintenance = false,
 }: NavigationBarProps) {
-  const { t } = useTranslation();
   const router = useRouter();
   const reload = () => {
     router.reload();
@@ -73,24 +72,12 @@ function NavigationBar({
           </div>
         </div>
         <div className='relative items-center justify-center hidden h-full lg:gap-10 xl:gap-18 lg:flex'>
-          <NavItem
-            inMaintenance={inMaintenance}
-            route='/swap'
-            Icon={UilSync}
-            label={t("navigationLabels.swap")}
-          />
           {/* <NavItem route='/stake' Icon={UilMoneyStack} label={t("navigationLabels.stake")} /> */}
           <NavItem
             inMaintenance={inMaintenance}
             route='/fund'
             Icon={UilMoneyBill}
-            label={t("navigationLabels.fund")}
-          />
-          <NavItem
-            inMaintenance={inMaintenance}
-            route='/stats'
-            Icon={DashboardIcon}
-            label={t("navigationLabels.analytics")}
+            label={"fund"}
           />
         </div>
         {!inMaintenance && (
@@ -101,7 +88,6 @@ function NavigationBar({
               disconnect={disconnect}
               multiwallet={multiwallet as WalletData}
             />
-
           </div>
         )}
       </div>

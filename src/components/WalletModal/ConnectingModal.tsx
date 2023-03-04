@@ -32,7 +32,6 @@ const GetIcon = ({ active }: IconProps) => {
 };
 
 function ConnectingModal({ close, open }: ConnectingModalProps) {
-  const { t } = useTranslation();
   const { width } = useViewport();
   const { enabledChains } = useMultiwallet();
   const { chain } = useSelector($wallet);

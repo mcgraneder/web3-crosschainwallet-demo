@@ -77,7 +77,6 @@ export abstract class AbstractEthereumConnector<Provider extends SaneProvider = 
   async getAccount() {
     if (this.debug) console.debug("getting account");
     const account = resultOrRaw(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await ((await this.getProvider()) as any).request({
         method: "eth_requestAccounts",
       })
@@ -91,7 +90,6 @@ export abstract class AbstractEthereumConnector<Provider extends SaneProvider = 
   async getRenNetwork() {
     if (this.debug) console.debug("getting chain");
     return this.networkIdMapper(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await resultOrRaw((await this.getProvider()) as any).request({
         method: "eth_chainId",
       })

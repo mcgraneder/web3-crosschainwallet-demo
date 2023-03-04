@@ -32,11 +32,11 @@ function UnsupportedNetworkModal({ chain, close, targetNetwork }: UnsupportedNet
   const [error, setError] = useState<any>(false);
 
   const onClick = async () => {
-    const addOrSwitchChain = await SwitchNetwork(chain as Chain, targetNetwork);
+    const addOrSwitchChain = await SwitchNetwork(chain as Chain, targetNetwork as any);
     if (addOrSwitchChain?.switched) {
       activateConnector(
         chain,
-        getMultiwalletConfig(targetNetwork).chains[chain][0].connector,
+        getMultiwalletConfig(targetNetwork)?.chains[chain][0].connector,
         "Metamask"
       );
     }

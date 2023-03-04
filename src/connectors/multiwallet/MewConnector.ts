@@ -68,11 +68,9 @@ export class EthereumMEWConnectConnector extends AbstractEthereumConnector<MewPr
     }
 
     if (this.mewConnectProvider.on) {
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       this.mewConnectProvider.on("disconnected", this.deactivate);
     }
     if (provider.on) {
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       provider.on("close", this.deactivate);
       provider.on("networkChanged", this.handleUpdate);
       provider.on("accountsChanged", this.handleUpdate);
@@ -143,13 +141,12 @@ export class EthereumMEWConnectConnector extends AbstractEthereumConnector<MewPr
     if (this.mewConnectProvider && this.mewConnectProvider.removeListener) {
       this.mewConnectProvider.removeListener(
         "disconnected",
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+
         this.deactivate
       );
     }
     const provider = await this.getProvider();
     if (provider.removeListener) {
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       provider.removeListener("close", this.deactivate);
       provider.removeListener("networkChanged", this.handleUpdate);
       provider.removeListener("accountsChanged", this.handleUpdate);

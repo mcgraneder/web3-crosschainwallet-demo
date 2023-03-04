@@ -306,7 +306,7 @@ export const WalletConnectModal = <P, A>({
                   rightLabel={rightLabelDisplay}
                   rightLabelClassName='text-primary'>
                   <div className='flex flex-col gap-1'>
-                    {connectors.map((x) => {
+                    {connectors?.map((x) => {
                       return (
                         <div key={x.name}>
                           <WalletEntry

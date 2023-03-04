@@ -223,7 +223,7 @@ export default class Wallet extends EventEmitter {
     const signatures = response.signatures.map((s) => bs58.decode(s));
     const publicKey = new PublicKey(response.publicKey);
     transactions = transactions.map((tx, idx) => {
-      tx.addSignature(publicKey, signatures[idx]);
+      tx.addSignature(publicKey, signatures[idx]!);
       return tx;
     });
     return transactions;

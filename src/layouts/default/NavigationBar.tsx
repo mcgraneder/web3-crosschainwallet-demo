@@ -73,12 +73,12 @@ function NavigationBar({
         </div>
         <div className='relative items-center justify-center hidden h-full lg:gap-10 xl:gap-18 lg:flex'>
           {/* <NavItem route='/stake' Icon={UilMoneyStack} label={t("navigationLabels.stake")} /> */}
-          <NavItem
+          {/* <NavItem
             inMaintenance={inMaintenance}
             route='/fund'
             Icon={UilMoneyBill}
             label={"fund"}
-          />
+          /> */}
         </div>
         {!inMaintenance && (
           <div className='flex items-center justify-end'>

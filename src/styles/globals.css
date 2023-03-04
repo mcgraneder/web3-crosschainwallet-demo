@@ -1,3 +1,117 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input {
+    -webkit-user-select: text !important;
+}
+
+html {
+    @apply scroll-smooth;
+}
+
+.tooltip {
+    @apply absolute invisible;
+}
+
+.has-tooltip {
+    @apply relative flex justify-center;
+}
+
+.has-tooltip:hover .tooltip {
+    @apply z-50 visible;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 200;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-ExtraLight.woff2");
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 300;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-Light.woff2");
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 400;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-Regular.woff2");
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 500;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-Medium.woff2");
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 600;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-SemiBold.woff2");
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 700;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2");
+}
+
+@font-face {
+    font-family: PlusJakartaSans;
+    font-weight: 800;
+    src: url("/fonts/PlusJakartaSans/PlusJakartaSans-ExtraBold.woff2");
+}
+
+@layer utilities {
+
+    .hide-arrows::-webkit-outer-spin-button,
+    .hide-arrows::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .hide-arrows {
+        -moz-appearance: textfield;
+    }
+
+    .coingrid-scrollbar {
+        scroll-margin-right: 1rem;
+        -webkit-scroll-margin-right: 1rem;
+    }
+
+    .coingrid-scrollbar::-webkit-scrollbar-track {
+        visibility: hidden;
+        -webkit-visibility: hidden;
+    }
+
+    .coingrid-scrollbar::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+        -webkit-width: 4px;
+        -webkit-height: 4px;
+    }
+
+    .coingrid-scrollbar::-webkit-scrollbar-thumb {
+        background-color: theme("colors.grey-500");
+        border-radius: 4px;
+        -webkit-background-color: theme("colors.grey-500");
+        -webkit-border-radius: 4px;
+    }
+}

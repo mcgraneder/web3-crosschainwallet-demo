@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "../styles/toast.css";
 
 import type { AppProps } from "next/app";
-import Script from "next/script";
 import Head from "next/head";
 import { MultiwalletProvider } from "src/connectors/multiwallet";
 import { ToastContainer, ToastContainerProps } from "react-toastify";

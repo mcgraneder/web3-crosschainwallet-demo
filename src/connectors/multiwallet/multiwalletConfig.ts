@@ -83,26 +83,26 @@ export const getMultiwalletConfig = (network: RenNetwork): WalletPickerConfig<un
           }),
         },
       ],
-      // [Chain.BinanceSmartChain]: [
-      //   {
-      //     name: Wallet.BinanceSmartChain,
-      //     logo: "",
-      //     connector: new BinanceSmartChainInjectedConnector({ debug: true }),
-      //   },
+      [Chain.BinanceSmartChain]: [
+        {
+          name: Wallet.BinanceSmartChain,
+          logo: "",
+          connector: new BinanceSmartChainInjectedConnector({ debug: true }),
+        },
 
-      //   {
-      //     name: Wallet.MetaMask,
-      //     logo: "",
-      //     connector: (() => {
-      //       const connector = new BinanceSmartChainInjectedConnector({
-      //         debug: true,
-      //         networkIdMapper: ethNetworkToRenNetwork,
-      //       });
-      //       connector.getProvider = () => (window as any).ethereum;
-      //       return connector;
-      //     })(),
-      //   },
-      // ],
+        {
+          name: Wallet.MetaMask,
+          logo: "",
+          connector: (() => {
+            const connector = new BinanceSmartChainInjectedConnector({
+              debug: true,
+              networkIdMapper: ethNetworkToRenNetwork,
+            });
+            connector.getProvider = () => (window as any).ethereum;
+            return connector;
+          })(),
+        },
+      ],
       [Chain.Solana]: [
         {
           name: Wallet.Phantom,

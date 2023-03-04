@@ -1,0 +1,42 @@
+/*source: https://fkhadra.github.io/react-toastify/how-to-style */
+:root {
+  /* Font */
+  --toastify-font-family: PlusJakartaSans, sans-serif;
+
+  /* Text Color */
+  --toastify-text-color-light: #ffffff;
+
+  /* Background */
+  --toastify-color-light: #2cc995;
+  --toastify-color-dark: #1c1d21;
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #07bc0c;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #e74c3c;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+}
+
+/** Used to define the position of the ToastContainer **/
+.Toastify__toast-container--top-left {
+}
+.Toastify__toast-container--top-center {
+}
+.Toastify__toast-container--top-right {
+  top: 5em;
+}
+.Toastify__toast-container--bottom-left {
+}
+.Toastify__toast-container--bottom-center {
+}
+.Toastify__toast-container--bottom-right {
+}
+
+.Toastify__toast {
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    padding: 4px;
+  }
+}

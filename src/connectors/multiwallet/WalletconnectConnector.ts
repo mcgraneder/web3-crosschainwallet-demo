@@ -107,7 +107,7 @@ export class EthereumWalletConnectConnector extends AbstractEthereumConnector<Sa
   async getAccount() {
     return (await this.getProvider())
       .send("eth_accounts")
-      .then((accounts: string[]): string => accounts[0]);
+      .then((accounts: string[]): string => accounts[0]!);
   }
   // Cast current ethereum network to Ren network version or throw
   async getRenNetwork(): Promise<RenNetwork> {

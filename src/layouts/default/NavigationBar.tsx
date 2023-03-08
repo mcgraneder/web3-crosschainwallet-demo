@@ -63,8 +63,8 @@ function NavigationBar({
         <div className='px-3 py-4 xs:px-0 xs:py-6'>
           <div onClick={reload} className='hover:cursor-pointer'>
             <a className='flex items-center w-max'>
-              <LogoFull className='hidden xs:block' />
-              <Logo className='w-8 h-8 xs:hidden' />
+              {/* <LogoFull className='hidden xs:block' />
+              <Logo className='w-8 h-8 xs:hidden' /> */}
               {/* <span className='px-2 shadow-xl flex justify-center items-center -translate-y-3 xs:-translate-y-2 py-1 text-[10px] -translate-x-2 sm:-translate-x-4  bg-[#ec4388] font-semibold rounded-2xl'>
               BETA
             </span> */}

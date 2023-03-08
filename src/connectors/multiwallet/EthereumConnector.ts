@@ -76,7 +76,7 @@ export class EthereumInjectedConnector extends AbstractEthereumConnector<Injecte
     let provider = await (this as AbstractEthereumConnector<InjectedProvider>).getProvider();
 
     if (!provider) {
-      throw Error("Missing Provider");
+      throw Error("Missing Provider metamask first");
     }
 
     // clear all previous listeners

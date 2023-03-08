@@ -46,7 +46,7 @@ export class CoinbaseInjectedConnector extends AbstractEthereumConnector<Injecte
     const provider = await (this as AbstractEthereumConnector<InjectedProvider>).getProvider();
 
     if (!provider) {
-      throw Error("Missing Provider");
+      throw Error("Missing Provider download coinbase first");
     }
 
     // clear all previous listeners
